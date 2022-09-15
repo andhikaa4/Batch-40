@@ -1,0 +1,102 @@
+body{
+    margin: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav{
+    background-color: rgb(223, 223, 223);
+    display: flex;
+    height: 7vh;
+}
+
+.nav-left{
+    display: flex;
+    padding-left: 50px;
+    align-items: center;
+    flex: 50%;
+}
+
+.nav-left li {
+    display: inline;
+    font-size: 20px;
+}
+
+.nav-left ul{
+    display: flex;
+    align-items: center;
+}
+
+.nav-left ul li a {
+    color: black;
+    text-decoration: none;
+    padding-right: 40px;
+}
+
+.nav-right {
+    display: flex;
+    flex: 50%;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 50px;
+    font-weight: bolder;
+}
+
+.nav-right a {
+    background-color: orangered;
+    color: white;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container{
+    background-color: rgb(227,231,235);
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    background-color: white;
+    display: flex;
+    width: 50%;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.section-left{
+    flex: 70%;
+    padding-right: 45px;
+}
+
+.section-right{
+    flex: 30%;
+}
+
+.skill-container {
+    display: flex;
+    margin-top: 30px;
+}
+
+.skill-container a{
+    margin-right: 20px;
+}
+
+.skill-container img{
+    width: 50px;
+}
+
+.social-media{
+    font-size: 25px;
+}
+
+.social-media i {
+    background-color: black;
+    color: white;
+    margin-top: 50px;
+    margin-right: 20px;
+    padding: 5px 8px;
+    border-radius: 25px;
+}
