@@ -1,0 +1,366 @@
+body{
+    background-color: #e4e4e4;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    
+}
+
+
+form {
+
+    width: 400px;
+    border-radius: 10px;
+    margin:auto;
+
+}
+
+form h2 {
+    text-align: center;
+    font-size: large bolder;
+}
+
+form div {
+    margin-top: 15px;
+
+}
+
+form label {
+    font-size: 15px ;
+    font-weight: bolder;
+}
+
+form input, textarea {
+    box-shadow: 1px 1px 3px 1px  rgb(180, 180, 180);
+}
+
+/*form*/
+form input.project-name{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
+form div.date {
+    display: flex;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+form input.start-date{
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 95%;
+
+
+}
+form input.end-date{
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+form textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+}
+
+form div.box-checkbox {
+    margin: 0;
+    display: flex;
+}
+
+
+form div.left-cb {
+    margin: 0;
+    margin-right: 50px;
+
+}
+
+.left-cb input {
+    background-color: white;
+    height: 15px;
+    width: 15px;
+    vertical-align: middle;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+
+form div.right-cb {
+    margin: 0;
+}
+
+.right-cb input {
+    background-color: white;
+    height: 15px;
+    width: 15px;
+    vertical-align: middle;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+
+
+form div.upload-image {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 5px;
+    background: #f4f3f3;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 3px 1px  rgb(180, 180, 180);;
+}
+
+form .upload-image label p {
+    margin: 0;
+    font-size: 15px;
+    color: #beb9b9;
+    padding: 5px 8px 5px 5px;
+    background-color:#e3e7eb;
+    border-radius: 5px;
+}
+
+form .upload-image label {
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-right: 8px;
+}
+
+form input.upload-file {
+    width: 100%;
+}
+
+form div.button {
+    text-align: right;
+}
+
+form div.button button {
+    background-color: black;
+    margin-top: 30px;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+hr.line {
+    border: none;
+}
+
+/*project-list*/
+.project-list {
+    background-color: white ;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.project-list h2 {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.project-content-container {
+    background-color: aliceblue;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.project-content {
+    flex: 1 0 21%;
+    max-width: 150px;
+    max-height: 500px;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+    border: 1px solid grey;
+}
+
+.project-content img {
+    max-width: 100%;
+    max-height:100%;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.project-img h4, .project-img a {
+    margin-top: 5px;
+    font-size: 12px;
+    margin-bottom: 0;
+    text-decoration: none;
+    color: black;
+}
+
+.project-img p {
+    margin-top: 0;
+    font-size: 7px;
+    margin-bottom: 10px;
+}
+
+.content-fill  {
+    display: -webkit-box;
+    margin-top: 0;
+    height: 40px;
+    font-size: 9px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 10px;
+    
+}
+
+.content-fill p {
+    margin: 0 auto;
+}
+
+.i-tech {
+    margin-top: 10px;
+}
+
+.i-tech i {
+    padding-right: 5px;
+}
+
+.button-group {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group .btn-edit {
+    margin-right: 5px;
+    width: 50%;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-group .btn-delete {
+    width: 50%;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*project-detail*/
+.section-container {
+    background-color: rgb(227,231,235);
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.section-container h2 {
+    height: 30px;
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+    z-index: -1;
+}
+
+section {
+    display: flex;
+    width: 70%;
+    padding: 20px;
+    border-radius: 30px;
+    margin: 0 auto;
+
+}
+
+.left-section {
+    flex: 60%;
+    margin-right: 20px;
+}
+
+.left-section img {
+    width: 100%
+}
+
+.right-section {
+    flex: 40%;
+}
+
+.right-section h3 {
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.duration {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+.duration i, .duration p {
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.tech {
+    display: flex;
+    margin-right: 20px;
+}
+
+.tech i, .tech p {
+    margin-right: 20px;
+    margin-top: 0px;
+    font-size: 20px;
+}
+
+.content-detail {
+    display: flex;
+    width: 70%;
+    padding: 20px;
+    border-radius: 30px;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+
+
+
+
+
+

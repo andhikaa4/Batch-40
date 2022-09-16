@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Project</title>
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="project.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
+    
+</head>
+<body>
+ 
+    <nav>
+        <div class="nav-left">
+            <img src="https://dumbways.id/assets/images/brandred.png" alt="logo" height="30px">
+            <ul>
+                <li>
+                    <a href="index.html">Home</a></li>
+                <li>
+                    <a href="Project.html">My Project</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="contact.html">Contact Me</a>
+        </div>
+    </nav>
+            <form onsubmit="addProject(event)">
+                <h2>ADD MY PROJECT</h2>
+                <div>
+                    <label for="project-name">
+                        Project Name
+                    </label>
+                    <input class="project-name" id="project-name" type="text" placeholder=" ">
+                </div>
+                <div class="date">
+                    <div>
+                        <label for="start-date">Start Date</label>
+                        <input class="start-date" id="start-date" name="date" type="text" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                    </div>
+                    <div>
+                        <label for="end-date">End Date</label>
+                        <input class="end-date" id="end-date" name="date" type="text" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                    </div>
+                </div>
+                <div>
+                    <label for="desc">Description</label>
+                    <textarea class="desc" name="desc" id="desc" cols="30" rows="10" style="resize: none;"></textarea>
+                </div>
+                <div>
+                    <label class="bc" for="bc">Technologies</label>
+                </div>
+
+                <div class="box-checkbox" id="bc">
+                   
+                    <div class="left-cb">
+                        <div>
+
+                            <input id="cb1" type="checkbox" value="node">
+                            <label for="cb1" >Node JS</label>
+
+                        </div>
+                        <div>
+
+                            <input id="cb2" type="checkbox" value="next">
+                            <label for="cb2">Next JS</label>
+
+                        </div>
+
+                    </div>
+                    <div class="right-cb">
+                        <div>
+
+                            <input id="cb3" type="checkbox" value="react">
+                            <label for="cb3">React Js</label>
+
+                        </div>
+                        <div>
+
+                            <input id="cb4" type="checkbox" value="typescript">
+                            <label for="cb4">Typescript</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="upload-image-box">
+                    <label>Upload Image</label>
+                        <div class="upload-image">
+                            <label for="input-upload-image">
+
+                                <p>Choose</p>
+                                <i class="fa-solid fa-paperclip"></i>
+
+                            </label>
+                            <input class="upload-file" type="file" id="input-upload-image" hidden>
+
+                        </div>
+                </div>
+                <div class="button">
+                    <button>Submit</button>
+                </div>
+
+            
+            </form>  
+            
+        <hr class="line"/>
+    <div class="project-list">
+        <h2>MY PROJECT</h2>
+            <div id="contents" class="project-content-container">
+                <div class="project-content">
+                    <div class="project-img">
+                        <img src="https://i.ibb.co/VMPS6DX/BG-Merah.jpg" alt="image">
+                        <a href="Project-detail.html">
+                        <h4>Project 1</h4></a>
+                        <p>Durasi : 3 Bulan</p>
+                    </div>
+                    <div class="content-fill">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At cupiditate dignissimos, doloribus nostrum rem libero modi architecto ex inventore quia quaerat porro! Tempore, exercitationem ipsa! Labore magni dignissimos iusto accusantium.</p>
+                    </div>
+                    <div class="i-tech">
+                        <i class="fa-brands fa-node-js"></i>
+                        <i class="fa-brands fa-react"></i>
+                        <i class="cib-next-js"></i>
+                        <i class="cib-typescript"></i> 
+
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+
+    <script src="project.js"></script>
+</body>
+</html>

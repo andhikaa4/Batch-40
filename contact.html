@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title> contact</title>
+        <link rel="stylesheet" href="contact.css">
+        <link rel="stylesheet" href="nav.css">
+    </head>
+
+    <body>
+
+        <nav>
+            <div class="nav-left">
+                <img src="https://dumbways.id/assets/images/brandred.png" alt="logo" height="30px">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a></li>
+                    <li>
+                        <a href="Project.html"> My Project</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <a href="contact.html">Contact Me</a>
+            </div>
+        </nav>
+    
+
+        <form action="">
+                <h2>GET IN TOUCH</h2>
+            <div>
+                <label             for="input-name">Nama
+                </label>
+                <input id="input-name" type="text" placeholder="">
+            </div>
+            <div>
+                <label                 for="input-email">Email</label>
+                <input id="input-email" type="email"
+                placeholder="">
+            </div>
+            <div>
+                <label for="input-pn">Phone Number</label>
+                <input id="input-pn" type="text"
+                placeholder="">
+            </div>
+            <div>
+                <label for="input-select">Subject</label>
+                <select name="" id="input-select">
+                    <option value=""></option>
+                    <option value="Newsletter">Newsletter
+                    </option>
+                    <option value="Customer Service">Customer Service</option>
+                    <option value="Help"> Help </option>
+                </select>
+            </div>
+            <div>
+                <label for="input-pesan">Pesan</label>
+                <textarea name="" id="input-message" cols="30" rows="10"
+                placeholder="" style="resize: none;"></textarea>
+            </div>
+            <div>
+                <button type="button" onclick="submitData()">Submit</button>
+            </div>
+        </form>
+
+    </body>
+</html>

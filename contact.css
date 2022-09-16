@@ -1,0 +1,47 @@
+body{
+    background-color: rgb(211, 211, 211);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form{
+    width: 350px;
+    margin: 100px auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+form h2{
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: xx-large;
+}
+
+form div{
+    margin-top: 15px;
+}
+
+form label{
+    font-weight: 5px;
+}
+
+form input, select, textarea {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 1px 1px 10px gray;
+}
+
+form button{
+    background-color: rgb(167, 109, 1);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    float: right;
+
+}
+
