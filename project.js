@@ -45,11 +45,12 @@ function addProject(event){
         next,
         react,
         typescript,
+        duration: getDurationTime(new Date(startDate),new Date(endDate)),
         image,
     }
 
     dataProject.push(Project)
-    //console.log(dataProject);
+    console.log(dataProject);
 
    renderProject()
 }
@@ -70,7 +71,7 @@ function renderProject(){
             <img src=" ${dataProject[index].image}" alt="image">
             <a href="Project-detail.html">
             <h4>${dataProject[index].title}</h4></a>
-            <p>Durasi : 3 Bulan</p>
+            <p>Duration : ${dataProject[index].duration}</p>
         </div>
         <div class="content-fill">
             <p>${dataProject[index].content}</p>
@@ -88,4 +89,28 @@ function renderProject(){
 
     </div>`
     }
+}
+
+function getDurationTime(start, end){
+
+    let distance = end - start
+
+    let milisecond = 1000 
+    let secondInHours = 3600 
+    let hoursInDay = 24 
+
+    let distanceDay = Math.floor(distance / (milisecond * secondInHours * hoursInDay))
+
+    let months = (end.getFullYear() - start.getFullYear()) * 12;
+    months -= start.getMonth();
+    months += end.getMonth();
+    
+    
+    
+    if(months > 0){
+        return `${months} Month`
+    } 
+    else if(distanceDay > 0){
+        return `${distanceDay} day`
+    } 
 }
