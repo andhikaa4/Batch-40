@@ -93,6 +93,7 @@ function renderProject(){
 
 function getDurationTime(start, end){
 
+
     let distance = end - start
 
     let milisecond = 1000 
