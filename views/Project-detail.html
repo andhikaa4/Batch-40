@@ -42,7 +42,7 @@
                 <h3>Duration</h3>
                 <div class="duration">
                         <p><i class="fa-solid fa-calendar"></i>
-                        {{.Project.StartDate}} - {{.Project.EndDate}}</p>
+                        {{.Project.Format_Date1}} - {{.Project.Format_Date2}}</p>
                         <p>
                         <i class="fa-solid fa-clock"></i> {{.Project.Duration}} Month</p>
                 </div>
@@ -51,21 +51,21 @@
                     <div class=" d-flex flex-wrap">
                         {{if .Project.Node}}
                         <p>
-                            <i class="fa-brands fa-{{.Project.Node}}-js"></i>
+                            <i class="fa-brands fa-node-js"></i>
                                 Node Js </p>
                         {{end}}
                         {{if .Project.React}}
-                            <p><i class="fa-brands fa-{{.Project.React}}"></i> React Js</p>
+                            <p><i class="fa-brands fa-react"></i> React Js</p>
                         {{end}}
 
                         {{if .Project.Next}}
                         <p>
-                            <i class="cib-{{.Project.Next}}-js"></i> Next Js
+                            <i class="cib-next-js"></i> Next Js
                             </p>
                         {{end}}
                         {{if .Project.Typescript}}
                             <p>
-                                <i class="cib-{{.Project.Typescript}}"></i> Typescript
+                                <i class="cib-typescript"></i> Typescript
                             </p>
                         {{end}}
 
