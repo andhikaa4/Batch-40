@@ -1,0 +1,63 @@
+.bg-orange {
+    background-color: orangered !important ;
+    color: white !important;
+    border: none;
+    
+}
+
+.text-orange:hover {
+    color: orangered;
+}
+
+.container {
+    height: 93vh;
+}
+
+.navbar {
+    height: 7vh;
+}
+
+.btn-primary {
+    font-size: 15px;
+    text-align: right;
+
+
+}
+
+.card-body p {
+    font-size: 12px;
+}
+
+.card {
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+form {
+    width: 500px;
+}
+
+.mb-3 {
+    flex: 45%;
+    margin-right: 5px;
+}
+
+.form-check {
+    margin-right: 30px;
+}
+
+form input, form textarea {
+   box-shadow:  1px 1px 3px 1px  rgb(180, 180, 180);
+}
+
+form .form-label {
+    font-weight: bold;
+}
+
+form .input-group {
+    width: 495px;
+}
+.right-icon {
+    background: url("./icon/paperclip.svg") no-repeat right; 
+    background-size: 20px;
+}

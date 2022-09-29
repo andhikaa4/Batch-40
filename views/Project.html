@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="public/css/Project.css">
+    <title>Add a Project</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-md">
+          <img src="public/images/brandred.png" alt="image" height="40px">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  text-orange" href="/add-project">Add Project</a>
+              </li>
+            </ul>
+              <a href="/contact" class="  btn bg-orange px-5">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container d-flex justify-content-center align-items-center">
+        <form action="/post-project" method="POST">
+            <h2 class="text-center mb-3">Add a Project</h2>
+            <div class="mb-3">
+              <label for="pn" class="form-label">Project Name</label>
+              <input type="text" name="projectName" class="form-control" id="pn" aria-describedby="pnHelp">
+            </div>
+            <div class="d-flex">
+                <div class="mb-3">
+                    <label for="sd" class="form-label">Start Date</label>
+                    <input type="date" name="sd" class="form-control"id="sd" aria-describedby="SdHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="ed" class="form-label">End Date</label>
+                    <input type="date" name="ed" class="form-control" id="ed" aria-describedby="EdHelp">
+                  </div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Technologies</label>
+                <div class="d-flex">
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="node" name="c1" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                              Node Js
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="react" name="c2" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                              React Js
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="next" name="c3" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                              Next Js
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="typescript" name="c4"  id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                            Typescript
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="mb-3">
+                <label for="desc" class="form-label">Description</label>
+                <textarea class="form-control" id="desc" cols="30" rows="10" name="Description" style="resize:none;"></textarea>
+              </div>
+
+              <div class="input-group mt-3">
+                <input type="file" class="form-control right-icon" name="inputImage" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+              </div>
+
+              <div class="d-flex justify-content-end mt-5">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+
+           
+          </form>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</html>

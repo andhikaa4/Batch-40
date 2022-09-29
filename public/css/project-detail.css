@@ -1,0 +1,150 @@
+.bg-orange {
+    background-color: orangered !important;
+    color: white !important;
+    border: none;
+    
+}
+
+.text-orange:hover {
+    color: orangered;
+}
+
+.container {
+    height: 93vh;
+}
+
+.navbar {
+    height: 7vh;
+}
+
+.btn-primary {
+    font-size: 15px;
+    text-align: right;
+
+
+}
+
+.card-body p {
+    font-size: 12px;
+}
+
+.card {
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+form {
+    width: 500px;
+}
+
+.mb-3 {
+    flex: 45%;
+    margin-right: 5px;
+}
+
+.form-check {
+    margin-right: 30px;
+}
+
+form input, form textarea {
+   box-shadow:  1px 1px 3px 1px  rgb(180, 180, 180);
+}
+
+form .form-label {
+    font-weight: bold;
+}
+
+form .input-group {
+    width: 495px;
+}
+.right-icon {
+    background: url("./icon/paperclip.svg") no-repeat right; 
+    background-size: 20px;
+}
+
+
+
+
+
+.section-container {
+    background-color: rgb(227,231,235);
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.section-container h2 {
+    height: 30px;
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+    z-index: -1;
+}
+
+section {
+    display: flex;
+    width: 70%;
+    padding: 20px;
+    border-radius: 30px;
+    margin: 0 auto;
+
+}
+
+.left-section {
+    flex: 60%;
+    margin-right: 20px;
+}
+
+.left-section img {
+    width: 100%
+}
+
+.right-section {
+    flex: 40%;
+}
+
+.right-section h3 {
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.duration {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+.duration i, .duration p {
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.tech {
+    display: flex;
+    margin-right: 20px;
+    flex-wrap: wrap;
+}
+
+
+
+.tech i, .tech p {
+    margin-right: 20px;
+    margin-top: 0px;
+    font-size: 20px;
+}
+
+
+.content-detail {
+    display: flex;
+    width: 70%;
+    padding: 20px;
+    border-radius: 30px;
+    margin: 0 auto;
+    text-align: justify;
+}
