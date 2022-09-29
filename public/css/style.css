@@ -1,0 +1,44 @@
+
+.bg-orange {
+    background-color: orangered !important ;
+    color: white !important;
+    border: none;
+    
+}
+
+.text-orange:hover {
+    color: orangered;
+}
+
+.container {
+    height: 93vh;
+}
+
+.navbar {
+    height: 7vh;
+}
+
+.btn-primary {
+    font-size: 10px;
+    padding: 50px;
+
+}
+
+.space {
+    margin-right: 5px;
+}
+
+.card-body p {
+    font-size: 12px;
+}
+
+.card {
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.margin{
+    margin-right: 10px;
+}
+
+

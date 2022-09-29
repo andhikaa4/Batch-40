@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+<body>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-md">
+          <img src="public/images/brandred.png" alt="image" height="40px">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  text-orange" href="/add-project">Add Project</a>
+              </li>
+            </ul>
+              <a href="/contact" class="  btn bg-orange px-5">Contact</a>
+          </div>
+        </div>
+      </nav>
+    
+      <div class="container d-flex justify-content-center align-items-center">
+        <div class="rounded shadow p-3 mb-5">
+          <div class="container-fluid d-flex p-5">
+            <div class="container-fluid " style="z-index: 1;">
+              <div class="container-fluid ">
+                <div class="container-fluid">
+                  <h4>Hi, Welcome To My Blog</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium nostrum laudantium ut quia aspernatur tenetur voluptatem neque nobis aliquam nisi hic nam sit, possimus, cupiditate ratione repudiandae, deserunt id! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nemo voluptas sapiente quam voluptatibus blanditiis obcaecati laboriosam, reiciendis incidunt magni?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe unde incidunt dignissimos inventore ducimus tempora odit distinctio quidem aut debitis dolore iste, corporis veniam natus omnis exercitationem autem dicta? Dolorem impedit hic magnam officia nesciunt optio perferendis quaerat harum blanditiis alias eius, debitis maiores soluta accusamus eveniet consequuntur vitae pariatur ipsam est obcaecati animi consectetur veniam! Repellat dolorem dolor excepturi voluptatem accusamus hic nam doloribus iste consectetur esse, expedita voluptatum, ratione quis exercitationem distinctio, officia cum quidem explicabo cupiditate blanditiis! Eos, perspiciatis ex modi in suscipit provident ea obcaecati, maiores reprehenderit natus placeat repellat. Tempore soluta rerum perferendis provident aliquid?</p>
+                </div>
+                <div class="container-fluid mt-3 d-flex align-items-center">
+                  <a class="btn btn-dark px-4" href="#">Contact</a>
+                  <a href="#" class="fs-5 ms-3  text-decoration-none text-black">Download <span><i class="bi bi-download"></i></span></a>
+                </div>
+                <div class="container-fluid d-flex mt-3 fs-2 ">
+                  <i class="bi bi-linkedin me-4"></i>
+                  <i class="bi bi-facebook me-4"></i>
+                  <i class="bi bi-instagram me-4"></i>
+                  <i class="bi bi-twitter me-4"></i>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+              <img src="public/images/BG Merah.jpg" class="card-img-top" alt="...">
+              <div class="card-body text-center">
+                <h4>Andhika Ardhiansyah</h4>
+                <p class="card-text">
+                  Fullstack Developer
+                </p>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+       
+      
+      </div>
+      <hr>
+      <div class="text-center  m-5">
+        <h2>My Project</h2>
+      </div>
+
+      <div class="container d-flex justify-content-center flex-wrap">
+        {{range $id, $data := .Project}}
+        <div class="card" style="width: 15rem; height:max-content">
+          <img src="public/images/BG Merah.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <a class="text-decoration-none text-black" href="/project-detail/{{$id}}"><h5 class="card-title">{{$data.Title}}</h5></a>
+
+            <p>Duration : {{$data.Duration}} Month</p>
+
+            <p class="card-text">{{$data.Content}}</p>
+
+            <div class="d-flex fs-5 ">
+              {{if $data.Node}}
+              <div class="me-2">
+                <i class="cib-{{$data.Node}}-js"></i>
+              </div>
+              {{end}}
+              {{if $data.React}}
+              <div class="me-2">
+                <i class="cib-{{$data.React}} margin"></i>
+              </div>
+              {{end}}
+              {{if $data.Next}}
+              <div class="me-2">
+                <i class="cib-{{$data.Next}}-js margin"></i>
+              </div>
+              {{end}}
+              {{if $data.Typescript}}
+              <div class="me-2">
+                <i class="cib-{{$data.Typescript}} margin"></i> 
+              </div>
+              {{end}}
+
+            </div>
+
+            <div class="d-flex ">
+              <a href="/edit-project/{{$id}}" class="btn btn-primary me-2">Edit </a>
+              <a href="/delete-project/{{$id}}" class="btn btn-primary">Delete</a>
+            </div>
+          </div>
+        </div>
+        {{end}}
+
+        
+
+      </div>
+      
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</html>
