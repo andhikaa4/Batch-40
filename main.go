@@ -8,9 +8,12 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
 	"github.com/jackc/pgtype"
+	"golang.org/x/crypto/bcrypt"
 
 	"github.com/lib/pq"
 )
@@ -31,9 +34,20 @@ func main() {
 	route.HandleFunc("/delete-project/{id}", deleteProject).Methods("GET")
 	route.HandleFunc("/edit-project/{id}", getProject).Methods("GET")
 	route.HandleFunc("/edit-post/{id}", editProject).Methods("POST")
+	route.HandleFunc("/register", Register).Methods("POST")
+	route.HandleFunc("/form-register", formRegister).Methods("GET")
+	route.HandleFunc("/form-login", formLogin).Methods("GET")
+	route.HandleFunc("/login", Login).Methods("POST")
+	route.HandleFunc("/logout", logout).Methods("GET")
 
 	fmt.Println("server running on port 8000")
 	http.ListenAndServe("localhost:8000", route)
+}
+
+type SessionData struct {
+	IsLogin   bool
+	UserName  string
+	FlashData string
 }
 
 type Project struct {
@@ -48,8 +62,19 @@ type Project struct {
 	Technologies []string
 	Content      string
 	Duration     int
+	Author       string
 	Format_Date1 string
 	Format_Date2 string
+	IsLogin      bool
+}
+
+var Data = SessionData{}
+
+type User struct {
+	ID       int
+	Name     string
+	Email    string
+	Password string
 }
 
 // var dataProject = []Project{}
@@ -63,13 +88,36 @@ func home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data, _ := connection.Conn.Query(context.Background(), "SELECT id, name, start_date, end_date,technologies, description  FROM tb_project")
+	var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
+	session, _ := store.Get(r, "SESSION_KEY")
+
+	if session.Values["IsLogin"] != true {
+		Data.IsLogin = false
+	} else {
+		Data.IsLogin = session.Values["IsLogin"].(bool)
+		Data.UserName = session.Values["Name"].(string)
+	}
+
+	fm := session.Flashes("message")
+
+	var flashes []string
+	if len(fm) > 0 {
+		session.Save(r, w)
+		for _, f1 := range fm {
+			// meamasukan flash message
+			flashes = append(flashes, f1.(string))
+		}
+	}
+
+	Data.FlashData = strings.Join(flashes, "")
+
+	data, _ := connection.Conn.Query(context.Background(), "SELECT tb_project.id, tb_project.name, start_date, end_date, technologies, description,  tb_users.name as author FROM tb_project LEFT JOIN tb_users ON tb_project.user_id = tb_users.id ORDER BY id DESC")
 
 	var result []Project
 	for data.Next() {
 		var each = Project{}
 
-		err := data.Scan(&each.ID, &each.Title, &each.StartDate, &each.EndDate, pq.Array(&each.Technologies), &each.Content)
+		err := data.Scan(&each.ID, &each.Title, &each.StartDate, &each.EndDate, pq.Array(&each.Technologies), &each.Content, &each.Author)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -90,7 +138,8 @@ func home(w http.ResponseWriter, r *http.Request) {
 	}
 
 	response := map[string]interface{}{
-		"Project": result,
+		"DataSession": Data,
+		"Project":     result,
 	}
 
 	// fmt.Println(result)
@@ -125,7 +174,12 @@ func postProject(w http.ResponseWriter, r *http.Request) {
 	var typescript = r.PostForm.Get("c4")
 	var content = r.PostForm.Get("Description")
 
-	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_project(name, start_date, end_date,technologies, description) VALUES ($1, $2, $3, $4, $5)", title, startDate, endDate, pq.Array([]string{node, react, next, typescript}), content)
+	var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
+	session, _ := store.Get(r, "SESSION_KEY")
+
+	author := session.Values["ID"].(int)
+
+	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_project(name, start_date, end_date,technologies, description, user_id ) VALUES ($1, $2, $3, $4, $5, $6)", title, startDate, endDate, pq.Array([]string{node, react, next, typescript}), content, author)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("message : " + err.Error()))
@@ -177,8 +231,8 @@ func projectDetail(w http.ResponseWriter, r *http.Request) {
 
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
-	err = connection.Conn.QueryRow(context.Background(), "SELECT id, name,  start_date, end_date, technologies,description FROM tb_project WHERE id=$1", id).Scan(
-		&ProjectDetail.ID, &ProjectDetail.Title, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Technologies, &ProjectDetail.Content)
+	err = connection.Conn.QueryRow(context.Background(), "SELECT id, name,  start_date, end_date, technologies,description, tb_users.name as author FROM tb_project LEFT JOIN tb_users ON tb_project.user_id = tb_users.id WHERE tb_project.id=$1", id).Scan(
+		&ProjectDetail.ID, &ProjectDetail.Title, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Technologies, &ProjectDetail.Content, &ProjectDetail.Author)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("message : " + err.Error()))
@@ -267,4 +321,131 @@ func editProject(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 
+}
+
+func formRegister(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	var tmpl, err = template.ParseFiles("views/Register.html")
+
+	if err != nil {
+		w.Write([]byte("message : " + err.Error()))
+		return
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func Register(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var name = r.PostForm.Get("inputName")
+	var email = r.PostForm.Get("inputEmail")
+	var password = r.PostForm.Get("pass")
+
+	passwordHash, _ := bcrypt.GenerateFromPassword([]byte(password), 10)
+
+	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_users(name, email, password) VALUES ($1, $2, $3)", name, email, passwordHash)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("message : " + err.Error()))
+		return
+	}
+
+	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+
+}
+
+func formLogin(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	var tmpl, err = template.ParseFiles("views/login.html")
+
+	if err != nil {
+		w.Write([]byte("message : " + err.Error()))
+		return
+	}
+	var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
+	session, _ := store.Get(r, "SESSION_KEY")
+
+	fm := session.Flashes("message")
+
+	var flashes []string
+	if len(fm) > 0 {
+		session.Save(r, w)
+		for _, f1 := range fm {
+			// meamasukan flash message
+			flashes = append(flashes, f1.(string))
+		}
+	}
+
+	Data.FlashData = strings.Join(flashes, "")
+	tmpl.Execute(w, Data)
+}
+
+func Login(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var email = r.PostForm.Get("inputEmail")
+	var password = r.PostForm.Get("pass")
+
+	user := User{}
+
+	err = connection.Conn.QueryRow(context.Background(),
+		"SELECT * FROM tb_users WHERE email=$1", email).Scan(&user.ID, &user.Name, &user.Email, &user.Password)
+
+	if err != nil {
+
+		var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
+		session, _ := store.Get(r, "SESSION_KEY")
+
+		session.AddFlash("Email belum terdaftar!", "message")
+		session.Save(r, w)
+
+		http.Redirect(w, r, "/form-login", http.StatusMovedPermanently)
+
+		return
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+	if err != nil {
+
+		var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
+		session, _ := store.Get(r, "SESSION_KEY")
+
+		session.AddFlash("Password Salah!", "message")
+		session.Save(r, w)
+
+		http.Redirect(w, r, "/form-login", http.StatusMovedPermanently)
+
+		return
+	}
+
+	var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
+	session, _ := store.Get(r, "SESSION_KEY")
+
+	session.Values["Name"] = user.Name
+	session.Values["Email"] = user.Email
+	session.Values["ID"] = user.ID
+	session.Values["IsLogin"] = true
+	session.Options.MaxAge = 10800
+
+	session.AddFlash("succesfull login", "message")
+	session.Save(r, w)
+	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+
+}
+
+func logout(w http.ResponseWriter, r *http.Request) {
+
+	var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
+	session, _ := store.Get(r, "SESSION_KEY")
+	session.Options.MaxAge = -1
+	session.Save(r, w)
+
+	http.Redirect(w, r, "/form-login", http.StatusSeeOther)
 }

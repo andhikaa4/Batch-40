@@ -23,13 +23,30 @@
                 
               </li>
               <li class="nav-item">
+                {{if .DataSession.IsLogin}}
                 <a class="nav-link  text-orange" href="/add-project">Add Project</a>
+                {{end}}
               </li>
             </ul>
-              <a href="/contact" class="  btn bg-orange px-5">Contact</a>
+            {{if .DataSession.IsLogin}}
+             <a href="#">Hallo, {{.DataSession.UserName}}</a>
+            <a href="/logout" class="btn btn-outline-secondary space">Logout</a>
+            <a href="/contact" class="  btn bg-orange px-5">Contact</a>
+           {{else}}
+            <a href="/form-login" type="button" class="btn btn-outline-secondary space">Login</a>
+            <a href="/form-register" type="button" class="btn btn-outline-primary space">Register</a>
+            {{end}}
+
           </div>
         </div>
       </nav>
+
+      {{if .FlashData}}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{.FlashData}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{end}}
     
       <div class="container d-flex justify-content-center align-items-center">
         <div class="rounded shadow p-3 mb-5">
@@ -107,9 +124,9 @@
 
             </div>
 
-            <div class="d-flex ">
-              <a href="/edit-project/{{$data.ID}}" class="btn btn-primary me-2">Edit </a>
-              <a href="/delete-project/{{$data.ID}}" class="btn btn-primary">Delete</a>
+            <div class="d-flex mt-2">
+              <a href="/edit-project/{{$data.ID}}" class="btn btn-danger me-2 w-50">Edit </a>
+              <a href="/delete-project/{{$data.ID}}" class="btn btn-danger w-50 ">Delete</a>
             </div>
           </div>
         </div>
